@@ -1,0 +1,4 @@
+# Ignore raw and processed large CSV files
+data/raw/
+data/processed/*.csv
+!data/processed/*.parquet
