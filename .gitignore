@@ -2,3 +2,96 @@
 data/raw/
 data/processed/*.csv
 !data/processed/*.parquet
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv
+
+# Conda/Miniforge
+.conda/
+conda-meta/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb_checkpoints
+
+# Data (مهم جداً لو فيه بيانات حساسة)
+data/raw/
+data/interim/
+data/processed/
+*.csv
+*.parquet
+*.xlsx
+*.db
+*.sqlite
+
+# Models (كبيرة الحجم)
+models/*.pkl
+models/*.h5
+models/*.joblib
+models_artifacts/
+
+# Secrets & Environment
+.env
+.env.*
+*.pem
+*.key
+config/secrets.yaml
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# OneDrive
+~$*
+*.tmp
