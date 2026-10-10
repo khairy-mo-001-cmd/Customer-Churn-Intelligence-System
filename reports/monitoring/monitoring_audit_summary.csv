@@ -1,0 +1,7 @@
+Feature Name,KS Statistic,P-Value,Drift Detected
+Frequency_Orders,0.0064,0.9999,NO ✅
+Monetary_Spend,0.0685,0.0,YES ⚠️
+Total_Units,0.0091,0.9816,NO ✅
+Unique_Products,0.0088,0.9858,NO ✅
+Avg_Order_Value,0.0088,0.9865,NO ✅
+Avg_Units_Per_Order,0.01,0.9539,NO ✅
