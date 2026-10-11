@@ -1,12 +1,12 @@
-# src/processing/generate_support.py
 import pandas as pd
 
-def generate_support_lookup_tables(df_transactions: pd.DataFrame) -> pd.DataFrame:
-    """Generates supplementary lookup tables for categories or customer metadata."""
-    if 'Product_Category' in df_transactions.columns:
-        category_summary = df_transactions.groupby('Product_Category').agg(
-            Total_Sales=('Order_Amount', 'sum'),
-            Total_Quantity=('Quantity', 'sum')
-        ).reset_index()
-        return category_summary
-    return pd.DataFrame()
+from src.utils.schema import AMOUNT, CUSTOMER, QTY, validate_schema
+
+
+def generate_support_lookup_tables(df: pd.DataFrame) -> pd.DataFrame:
+    """Sales summary per country (the dataset has no product-category column)."""
+    validate_schema(df, {'Country', AMOUNT, QTY, CUSTOMER})
+    return (df.groupby('Country')
+              .agg(Total_Sales=(AMOUNT, 'sum'), Total_Units=(QTY, 'sum'),
+                   Customers=(CUSTOMER, 'nunique'))
+              .reset_index())

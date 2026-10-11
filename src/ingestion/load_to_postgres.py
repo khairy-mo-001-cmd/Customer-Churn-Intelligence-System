@@ -1,23 +1,23 @@
-# src/ingestion/load_to_postgres.py
+import logging
+
 import pandas as pd
-from sqlalchemy import text
+
 from src.utils.db_connector import get_postgres_engine
 
-def sync_dataframe_to_postgres(df: pd.DataFrame, table_name: str, if_exists_action: str = 'replace') -> None:
-    """Persists a pandas DataFrame into PostgreSQL using chunked atomic execution."""
+logger = logging.getLogger(__name__)
+VALID_ACTIONS = {'fail', 'replace', 'append'}
+
+
+def sync_dataframe_to_postgres(df: pd.DataFrame, table_name: str,
+                               if_exists_action: str = 'append') -> None:
+    """Write a DataFrame to PostgreSQL inside one transaction (all-or-nothing)."""
+    if if_exists_action not in VALID_ACTIONS:
+        raise ValueError(f'if_exists_action must be one of {sorted(VALID_ACTIONS)}')
     engine = get_postgres_engine()
     try:
         with engine.begin() as connection:
-            df.to_sql(
-                name=table_name,
-                con=connection,
-                if_exists=if_exists_action,
-                index=False,
-                chunksize=5_000
-            )
-        print(f"[OK] Successfully synced {len(df):,} rows to table '{table_name}'.")
-    except Exception as e:
-        print(f"[ERROR] Failed to sync DataFrame to PostgreSQL: {e}")
-        raise
+            df.to_sql(name=table_name, con=connection, if_exists=if_exists_action,
+                      index=False, chunksize=5_000)
+        logger.info("Synced %s rows to table '%s'", f'{len(df):,}', table_name)
     finally:
         engine.dispose()

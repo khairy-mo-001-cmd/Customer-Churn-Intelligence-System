@@ -1,14 +1,15 @@
-# src/utils/db_connector.py
 from sqlalchemy import create_engine
-from sqlalchemy.engine import Engine
-from src.utils.config import DB_USER, DB_PASS, DB_HOST, DB_PORT, DB_NAME
+from sqlalchemy.engine import URL, Engine
+
+from src.utils.config import get_db_settings
+
 
 def get_postgres_engine() -> Engine:
-    """Constructs and returns a SQLAlchemy production engine for PostgreSQL."""
-    database_url = f"postgresql+psycopg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-    engine = create_engine(
-        database_url,
-        pool_pre_ping=True,
-        connect_args={'connect_timeout': 10}
+    """Build a SQLAlchemy engine. URL.create escapes special characters in the password."""
+    s = get_db_settings()
+    url = URL.create(
+        'postgresql+psycopg',
+        username=s['user'], password=s['password'],
+        host=s['host'], port=s['port'], database=s['database'],
     )
-    return engine
+    return create_engine(url, pool_pre_ping=True, connect_args={'connect_timeout': 10})

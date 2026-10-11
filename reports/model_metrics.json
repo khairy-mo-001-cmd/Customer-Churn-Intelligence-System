@@ -1,0 +1,74 @@
+{
+  "90": {
+    "train_cutoff": "2011-06-13 12:50:00",
+    "test_cutoff": "2011-09-11 12:50:00",
+    "n_train": 4967,
+    "n_test": 5270,
+    "prevalence_test": 0.5666034155597723,
+    "roc_auc": 0.7935381165814078,
+    "pr_auc": 0.813342749933839,
+    "f1_score": 0.7824008996345235,
+    "brier": 0.19766328785639117,
+    "brier_uncalibrated": 0.19992341877515968,
+    "calibration_used": true,
+    "baseline_recency_roc_auc": 0.7625690173524317,
+    "confusion_matrix": [
+      [
+        939,
+        1345
+      ],
+      [
+        203,
+        2783
+      ]
+    ]
+  },
+  "180": {
+    "train_cutoff": "2010-12-15 12:50:00",
+    "test_cutoff": "2011-06-13 12:50:00",
+    "n_train": 4308,
+    "n_test": 4967,
+    "prevalence_test": 0.48218240386551237,
+    "roc_auc": 0.7887380396562303,
+    "pr_auc": 0.7459926837245614,
+    "f1_score": 0.7446227381358825,
+    "brier": 0.1959772104808301,
+    "brier_uncalibrated": 0.19702032836323743,
+    "calibration_used": true,
+    "baseline_recency_roc_auc": 0.7707825076218274,
+    "confusion_matrix": [
+      [
+        1290,
+        1282
+      ],
+      [
+        214,
+        2181
+      ]
+    ]
+  },
+  "270": {
+    "train_cutoff": "2010-06-18 12:50:00",
+    "test_cutoff": "2011-03-15 12:50:00",
+    "n_train": 2870,
+    "n_test": 4601,
+    "prevalence_test": 0.4175179308845903,
+    "roc_auc": 0.7644478350050892,
+    "pr_auc": 0.6536089767043842,
+    "f1_score": 0.37514473176379776,
+    "brier": 0.2259771347036064,
+    "brier_uncalibrated": 0.2259771347036064,
+    "calibration_used": false,
+    "baseline_recency_roc_auc": 0.7421916640120585,
+    "confusion_matrix": [
+      [
+        2496,
+        184
+      ],
+      [
+        1435,
+        486
+      ]
+    ]
+  }
+}
